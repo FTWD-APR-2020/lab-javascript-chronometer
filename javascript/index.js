@@ -4,51 +4,125 @@ const chronometer = new Chronometer();
 const btnLeft = document.getElementById('btnLeft');
 const btnRight = document.getElementById('btnRight');
 
-let stopped = true;
+// get the DOM elements that will serve us to display the time:
+let minDec = document.getElementById('minDec');
+let minUni = document.getElementById('minUni');
+let secDec = document.getElementById('secDec');
+let secUni = document.getElementById('secUni');
+let milDec = document.getElementById('milDec');
+let milUni = document.getElementById('milUni');
+let splits = document.getElementById('splits');
 
+function printTime() {
+  // ... your code goes here
+  printMinutes()
+  printSeconds()
+  printMilliseconds()
+}
+
+function printMinutes() {
+  // ... your code goes here
+  minUni.innerHTML = chronometer.twoDigitsNumber(chronometer.getMinutes())[1]
+  minDec.innerText = chronometer.twoDigitsNumber(chronometer.getMinutes())[0]
+}
+
+function printSeconds() {
+  // ... your code goes here
+  secUni.innerHTML = chronometer.twoDigitsNumber(chronometer.getSeconds())[1]
+  secDec.innerText = chronometer.twoDigitsNumber(chronometer.getSeconds())[0]
+}
+
+// ==> BONUS
+function printMilliseconds() {
+  // ... your code goes here
+  milUni.innerHTML = chronometer.twoDigitsNumber(chronometer.getMilliSeconds())[1]
+  milDec.innerText = chronometer.twoDigitsNumber(chronometer.getMilliSeconds())[0]
+}
+
+function printSplit() {
+  // ... your code goes here
+  let li = document.createElement('li') // <li></li>
+  li.innerHTML = chronometer.splitClick() // <li>00:00</li> 00:00 this is whatever the current time on the watch is
+  splits.appendChild(li) //<ol> li </ol>
+}
+
+function clearSplits() {
+  // ... your code goes here
+  let allSplits = document.getElementById('splits')
+  allSplits.innerText = ''
+}
+
+function setStopBtn() {
+  // ... your code goes here
+  btnLeft.className = 'btn stop'
+  // innerText vs innerHTML vs textContent - https://medium.com/better-programming/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc
+  btnLeft.innerText = 'STOP'
+}
+
+function setSplitBtn() {
+  // ... your code goes here
+  btnRight.className = 'btn split'
+  btnRight.innerText = 'SPLIT'
+}
+
+function setStartBtn() {
+  // ... your code goes here
+  btnLeft.className = 'btn start'
+  btnLeft.innerText = 'START'
+}
+
+function setResetBtn() {
+  // ... your code goes here
+  btnRight.className = 'btn reset'
+  btnRight.innerText = 'RESET'
+}
+
+function startTimer(){
+  chronometer.startClick(printTime)  // we start the timer
+    setStopBtn()  // change (i.e. toggle) the button to say STOP instead of START
+    setSplitBtn()
+}
+
+function stopTimer(){
+  chronometer.stopClick()   // this clears the interval
+  setStartBtn()
+  setResetBtn()
+}
+
+// Start/Stop Button
 btnLeft.addEventListener('click', () => {
-
-  if(stopped){
-    chronometer.startClick(printTime)
-    btnLeft.innerHTML = 'Stop'
-    btnLeft.className = "btn stop"
+  if(btnLeft.classList.contains("start")){  // the timer is not running
+    startTimer()
+  } else {  // the timer is running
+    stopTimer()
   }
-  else {
-    chronometer.stopClick()
-    btnLeft.innerHTML = 'Start'
-    btnLeft.className = "btn start"
-  }
-
-  stopped = !stopped //toggle the clock setting
 });
+
+// // Start/Stop Button
+// btnLeft.addEventListener('click', () => {
+//   // ... your code goes here
+//   // if the timer is not running then I want to start the timer
+//   // and change the button class from start to stop
+//   // contains - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+//   if(btnLeft.classList.contains("start")){  // the timer is not running
+//     chronometer.startClick(printTime)  // we start the timer
+//     setStopBtn()  // change (i.e. toggle) the button to say STOP instead of START
+//     setSplitBtn()
+//   } else {  // the timer is running
+//     chronometer.stopClick()   // this clears the interval
+//     setStartBtn()
+//     setResetBtn()
+//   }
+// });
 
 // Reset/Split Button
 btnRight.addEventListener('click', () => {
-  chronometer.resetClick()
+  // ... your code goes here
+  if(btnRight.classList.contains("reset")){  // the timer is not running
+    chronometer.resetClick()  // we reset clock
+    clearSplits()
+    printTime() // print the new time which is 00:00
+  } else {  // the timer is running
+    printSplit()
+  }
 });
-
-
-function printTime(time){
-  console.log(time)
-  
-  let seconds = String(time%60)//.split('')
-  let minutes = String(Math.floor(time/60))//.split('')
-  // let minDec = minutes[0]
-  // let minUni = minutes[1]
-
-  // let secDec = seconds[0]
-  // let secUni = seconds[1]
-
-  console.log(seconds, minutes)
-
-  // let html = ` 
-  //   <span id="minDec" class="number">${minDec}</span>
-  //   <span id="minUni" class="number">${minUni}</span>
-  //   <span>:</span>
-  //   <span id="secDec" class="number">${secDec}</span>
-  //   <span id="secUni" class="number">${secUni}</span>`
-
-
-  document.querySelector('#sphere span').innerHTML = minutes + ':' + seconds
-}
-
