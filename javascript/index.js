@@ -31,8 +31,17 @@ btnRight.addEventListener('click', () => {
 function printTime(time){
   console.log(time)
   
-  let seconds = String(time%60)//.split('')
-  let minutes = String(Math.floor(time/60))//.split('')
+  let seconds = time%60//.split('')
+  let minutes = Math.floor(time/60)//.split('')
+
+
+  if(seconds < 10){
+    seconds = "0"+seconds
+  }
+
+  if(minutes < 10){
+    minutes = "0"+minutes
+  }
   // let minDec = minutes[0]
   // let minUni = minutes[1]
 

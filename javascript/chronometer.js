@@ -7,7 +7,7 @@ class Chronometer {
     let id = setInterval(()=>{
       this.currentTime+=1;
       callback(this.currentTime) 
-    }, 1000)
+    }, 100)
     this.intervalId = id
   }
  
