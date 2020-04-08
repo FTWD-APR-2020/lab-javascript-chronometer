@@ -31,8 +31,8 @@ btnRight.addEventListener('click', () => {
 function printTime(time){
   console.log(time)
   
-  let seconds = time%60//.split('')
-  let minutes = Math.floor(time/60)//.split('')
+  let seconds = time%60
+  let minutes = Math.floor(time/60)
 
 
   if(seconds < 10){
@@ -42,21 +42,9 @@ function printTime(time){
   if(minutes < 10){
     minutes = "0"+minutes
   }
-  // let minDec = minutes[0]
-  // let minUni = minutes[1]
 
-  // let secDec = seconds[0]
-  // let secUni = seconds[1]
 
   console.log(seconds, minutes)
-
-  // let html = ` 
-  //   <span id="minDec" class="number">${minDec}</span>
-  //   <span id="minUni" class="number">${minUni}</span>
-  //   <span>:</span>
-  //   <span id="secDec" class="number">${secDec}</span>
-  //   <span id="secUni" class="number">${secUni}</span>`
-
 
   document.querySelector('#sphere span').innerHTML = minutes + ':' + seconds
 }
