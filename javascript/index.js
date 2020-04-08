@@ -4,62 +4,51 @@ const chronometer = new Chronometer();
 const btnLeft = document.getElementById('btnLeft');
 const btnRight = document.getElementById('btnRight');
 
-// get the DOM elements that will serve us to display the time:
-let minDec = document.getElementById('minDec');
-let minUni = document.getElementById('minUni');
-let secDec = document.getElementById('secDec');
-let secUni = document.getElementById('secUni');
-let milDec = document.getElementById('milDec');
-let milUni = document.getElementById('milUni');
-let splits = document.getElementById('splits');
+let stopped = true;
 
-function printTime() {
-  // ... your code goes here
-}
-
-function printMinutes() {
-  // ... your code goes here
-}
-
-function printSeconds() {
-  // ... your code goes here
-}
-
-// ==> BONUS
-function printMilliseconds() {
-  // ... your code goes here
-}
-
-function printSplit() {
-  // ... your code goes here
-}
-
-function clearSplits() {
-  // ... your code goes here
-}
-
-function setStopBtn() {
-  // ... your code goes here
-}
-
-function setSplitBtn() {
-  // ... your code goes here
-}
-
-function setStartBtn() {
-  // ... your code goes here
-}
-
-function setResetBtn() {
-  // ... your code goes here
-}
-
-// Start/Stop Button
 btnLeft.addEventListener('click', () => {
-  // ... your code goes here
+
+  if(stopped){
+    chronometer.startClick(printTime)
+    btnLeft.innerHTML = 'Stop'
+    btnLeft.className = "btn stop"
+  }
+  else {
+    chronometer.stopClick()
+    btnLeft.innerHTML = 'Start'
+    btnLeft.className = "btn start"
+  }
+
+  stopped = !stopped //toggle the clock setting
 });
 
 // Reset/Split Button
 btnRight.addEventListener('click', () => {
-  // ... your code goes here
+  chronometer.resetClick()
 });
+
+
+function printTime(time){
+  console.log(time)
+  
+  let seconds = String(time%60)//.split('')
+  let minutes = String(Math.floor(time/60))//.split('')
+  // let minDec = minutes[0]
+  // let minUni = minutes[1]
+
+  // let secDec = seconds[0]
+  // let secUni = seconds[1]
+
+  console.log(seconds, minutes)
+
+  // let html = ` 
+  //   <span id="minDec" class="number">${minDec}</span>
+  //   <span id="minUni" class="number">${minUni}</span>
+  //   <span>:</span>
+  //   <span id="secDec" class="number">${secDec}</span>
+  //   <span id="secUni" class="number">${secUni}</span>`
+
+
+  document.querySelector('#sphere span').innerHTML = minutes + ':' + seconds
+}
+
