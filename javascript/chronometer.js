@@ -1,7 +1,7 @@
 class Chronometer {
   constructor() {
-    this.seconds = 0; //centiseconds ? 
-    this.milliSeconds = 0; // BONUS
+    this.seconds = 0; // seconds
+    this.milliSeconds = 0; // BONUS is actually centiseconds
     this.intervalId = 0; //11  
   }
 
@@ -17,8 +17,6 @@ class Chronometer {
         printTimeFunc() 
     }, 10) 
   }
-
-  
   
   getMinutes() {
     // ... your code goes here
@@ -56,6 +54,7 @@ class Chronometer {
 
   resetClick() {
     this.seconds = 0;
+
     this.milliSeconds = 0;
   }
   
