@@ -5,12 +5,12 @@ const btnLeft = document.getElementById('btnLeft');
 const btnRight = document.getElementById('btnRight');
 
 // get the DOM elements that will serve us to display the time:
-let minDec = document.getElementById('minDec');
-let minUni = document.getElementById('minUni');
-let secDec = document.getElementById('secDec');
-let secUni = document.getElementById('secUni');
-let milDec = document.getElementById('milDec');
-let milUni = document.getElementById('milUni');
+let minuteLeftDigit = document.getElementById('minDec');
+let minuteRightDigit = document.getElementById('minUni');
+let secondLeftDigit = document.getElementById('secDec');
+let secondRightDigit = document.getElementById('secUni');
+let milliSecLeftDigit = document.getElementById('milDec');
+let milliSecRightDigit = document.getElementById('milUni');
 let splits = document.getElementById('splits');
 
 function printTime() {
@@ -22,21 +22,21 @@ function printTime() {
 
 function printMinutes() {
   // ... your code goes here
-  minUni.innerHTML = chronometer.twoDigitsNumber(chronometer.getMinutes())[1]
-  minDec.innerText = chronometer.twoDigitsNumber(chronometer.getMinutes())[0]
+  minuteRightDigit.innerHTML = chronometer.twoDigitsNumber(chronometer.getMinutes())[1]
+  minuteLeftDigit.innerText = chronometer.twoDigitsNumber(chronometer.getMinutes())[0]
 }
 
 function printSeconds() {
   // ... your code goes here
-  secUni.innerHTML = chronometer.twoDigitsNumber(chronometer.getSeconds())[1]
-  secDec.innerText = chronometer.twoDigitsNumber(chronometer.getSeconds())[0]
+  secondRightDigit.innerHTML = chronometer.twoDigitsNumber(chronometer.getSeconds())[1]
+  secondLeftDigit.innerText = chronometer.twoDigitsNumber(chronometer.getSeconds())[0]
 }
 
 // ==> BONUS
 function printMilliseconds() {
   // ... your code goes here
-  milUni.innerHTML = chronometer.twoDigitsNumber(chronometer.getMilliSeconds())[1]
-  milDec.innerText = chronometer.twoDigitsNumber(chronometer.getMilliSeconds())[0]
+  milliSecRightDigit.innerHTML = chronometer.twoDigitsNumber(chronometer.getMilliSeconds())[1]
+  milliSecLeftDigit.innerText = chronometer.twoDigitsNumber(chronometer.getMilliSeconds())[0]
 }
 
 function printSplit() {
@@ -126,3 +126,5 @@ btnRight.addEventListener('click', () => {
     printSplit()
   }
 });
+
+

@@ -4,6 +4,8 @@ class Chronometer {
     this.milliSeconds = 0; // BONUS
     this.intervalId = 0; //11  
   }
+
+  // starts the setInterval
   startClick(printTimeFunc) {
     this.intervalId = setInterval(()=>{
       console.log(this.seconds)
@@ -13,13 +15,16 @@ class Chronometer {
       }
       // if(printTimeFunc)
         printTimeFunc() 
-    }, 10) // 1000 => 10 * 100
+    }, 10) 
   }
+
+  
   
   getMinutes() {
     // ... your code goes here
     return Math.floor(this.seconds / 60);
   }
+
   getSeconds() {
     // ... your code goes here
     return this.seconds % 60;
@@ -44,9 +49,11 @@ class Chronometer {
       return `${value}`
     }
   }
+
   stopClick() {
     clearInterval(this.intervalId)
   }
+
   resetClick() {
     this.seconds = 0;
     this.milliSeconds = 0;
@@ -56,5 +63,6 @@ class Chronometer {
   splitClick() {
     // ... your code goes here
     return `${this.twoDigitsNumber(this.getMinutes())}:${this.twoDigitsNumber(this.getSeconds())}:${this.twoDigitsNumber(this.getMilliSeconds())}`
+    // return `${this.getMinutes()}:${this.getSeconds()}:${this.getMilliSeconds()}`
   }
 }
